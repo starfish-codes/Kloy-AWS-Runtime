@@ -1,6 +1,6 @@
-import Core
-import KloyAwsLambdaRuntime
 import AWSLambdaRuntime
+import Core
+import KloyAWSRuntime
 
 func simpleService(status: Status = .ok, body: String) -> (Request) -> Response {
     { request in
@@ -8,8 +8,15 @@ func simpleService(status: Status = .ok, body: String) -> (Request) -> Response 
     }
 }
 
-KloyLambda.Run(with: APIGatewayV2Handler(server: Server(
-        from: routed(route(.Get, "cats") ~> simpleService(body: "All 🐈"))
-    ))
-)
+if #available(macOS 12.0.0, *) {
+    KloyLambda.run(
+        with: APIGatewayV2Handler(
+            server: Server(
+                from: routed(route(.get, "cats") ~> simpleService(body: "All 🐈"))
+            )
+        )
+    )
+} else {
+    // Fallback on earlier versions
+}
 
