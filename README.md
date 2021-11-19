@@ -1,2 +1,3 @@
-# Kloy-AWS-Runtime
-The kloy AWS Lambda Runtime
+# KloyAWSRuntime
+
+A description of this package.
