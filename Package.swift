@@ -29,12 +29,16 @@ let package = Package(
                 .product(name: "AWSLambdaEvents", package: "swift-aws-lambda-runtime"),
                 .product(name: "NIO", package: "swift-nio"),
                 .product(name: "NIOHTTP1", package: "swift-nio"),
-            ]),
+            ],
+            path: "Sources"
+        ),
         .executableTarget(name: "Examples", dependencies: [
             "KloyAWSRuntime",
-        ], path: "./Sources/Examples"),
+        ], path: "Examples"),
         .testTarget(
             name: "KloyAWSRuntimeTests",
-            dependencies: ["KloyAWSRuntime"]),
+            dependencies: ["KloyAWSRuntime"],
+            path: "Tests"
+        ),
     ]
 )
